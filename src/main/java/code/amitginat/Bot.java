@@ -39,8 +39,14 @@ public class Bot {
 
 
     public static void main(String[] args) throws LoginException {
+        try{
+            bot = createBot().build();
+        }
+        catch (Throwable throwable){
+            bot = createBot().build();
+            throwable.printStackTrace();
 
-        bot = createBot().build();
+        }
     }
     public static JDA getBot(){
         return bot;
