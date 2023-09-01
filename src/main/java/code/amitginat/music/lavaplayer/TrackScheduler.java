@@ -1,5 +1,6 @@
 package code.amitginat.music.lavaplayer;
 
+import code.amitginat.events.ReadEvent;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.event.AudioEventAdapter;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
@@ -28,6 +29,10 @@ public class TrackScheduler extends AudioEventAdapter {
     public void nextTrack() {
         AudioTrack currentTrack = this.queue.poll();
         this.player.startTrack(currentTrack, false);
+        try {
+            ReadEvent.thisEvent.getChannel().sendMessageFormat("Playing %s by %s", currentTrack.getInfo().title, currentTrack.getInfo().author).queue();
+        }
+        catch (Throwable ignored){}
         PlayingTrack = currentTrack;
 
     }

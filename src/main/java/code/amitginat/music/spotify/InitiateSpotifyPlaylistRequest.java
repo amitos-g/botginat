@@ -57,7 +57,6 @@ public class InitiateSpotifyPlaylistRequest {
 
             final Paging<PlaylistTrack> playlistTrackPaging = request.execute();
 
-            System.out.println("Total: " + playlistTrackPaging.getTotal());
             PlaylistTrack[] tracks = playlistTrackPaging.getItems();
             for (PlaylistTrack track : tracks) {
 
@@ -85,7 +84,6 @@ public class InitiateSpotifyPlaylistRequest {
             // Example Only. Never block in production code.
             final Paging<PlaylistTrack> playlistTrackPaging = pagingFuture.join();
 
-            System.out.println("Total: " + playlistTrackPaging.getTotal());
         } catch (CompletionException e) {
             System.out.println("Error: " + e.getCause().getMessage());
         } catch (CancellationException e) {

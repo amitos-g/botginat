@@ -1,5 +1,8 @@
 package code.amitginat;
 
+import code.amitginat.commands.CommandManager;
+import code.amitginat.commands.music.*;
+import code.amitginat.events.ReadEvent;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
@@ -11,6 +14,7 @@ import javax.security.auth.login.LoginException;
 public class Bot {
 
 
+    public static CommandManager commandManager;
     private static JDA bot;
     public static JDABuilder createBot(){
 
@@ -27,13 +31,29 @@ public class Bot {
         bot.setActivity(Activity.listening("ginat help"));
 
 
+        //COMMANDS
+        commandManager = new CommandManager(
+                new HelpCommand(),
+
+                new JoinCommand(),
+                new LeaveCommand(),
+                new PlayCommand(),
+                new StopCommand(),
+                new ResumeCommand(),
+                new SkipCommand(),
+                new NowPlayingCommand(),
+                new WhatsNextCommand(),
+                new ClearMusicCommand(),
+
+                new ClearMessageCommand()
+        );
+
+
+
         //CACHE
 
         bot.enableCache(CacheFlag.VOICE_STATE);
-
-
         bot.addEventListeners(new ReadEvent());
-
         return bot;
     }
 

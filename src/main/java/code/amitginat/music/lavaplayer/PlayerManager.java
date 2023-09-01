@@ -1,6 +1,6 @@
 package code.amitginat.music.lavaplayer;
 
-import code.amitginat.ReadEvent;
+import code.amitginat.events.ReadEvent;
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
