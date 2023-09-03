@@ -1,6 +1,7 @@
 package code.amitginat.commands.music;
 
 import code.amitginat.commands.AbstractCommand;
+import code.amitginat.other.IsraelTime;
 
 public class LeaveCommand extends AbstractCommand {
 
@@ -20,7 +21,7 @@ public class LeaveCommand extends AbstractCommand {
 
         catch (Throwable throwable){
             channel.sendMessage("לא מצליח לצאת! נוח לי מדי פה").queue();
-            throwable.printStackTrace();
+            System.out.println(IsraelTime.get() + " ");throwable.printStackTrace();
         }
 
     }

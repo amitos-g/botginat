@@ -1,6 +1,7 @@
 package code.amitginat.music.spotify;
 
 import code.amitginat.ApiKeys;
+import code.amitginat.other.IsraelTime;
 import org.apache.hc.core5.http.ParseException;
 import se.michaelthelin.spotify.SpotifyApi;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
@@ -10,6 +11,8 @@ import se.michaelthelin.spotify.requests.authorization.client_credentials.Client
 import se.michaelthelin.spotify.requests.data.tracks.GetTrackRequest;
 
 import java.io.IOException;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
@@ -42,7 +45,7 @@ public class InitiateSpotifyTrack {
             thisTrack = new SongInfo(track.getArtists()[0].getName(), track.getName());
 
         } catch (IOException | SpotifyWebApiException | ParseException e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println(IsraelTime.get() + " Error: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -55,9 +58,9 @@ public class InitiateSpotifyTrack {
             // Example Only. Never block in production code.
             var futureJoined = trackCompletableFuture.join();
         } catch (CompletionException e) {
-            System.out.println("Error: " + e.getCause().getMessage());
+            System.out.println(IsraelTime.get() + " Error: " + e.getCause().getMessage());
         } catch (CancellationException e) {
-            System.out.println("Async operation cancelled.");
+            System.out.println(IsraelTime.get() + " Async operation cancelled.");
         }
     }
 
@@ -72,7 +75,7 @@ public class InitiateSpotifyTrack {
             final ClientCredentials clientCredentials = clientCredentialsFuture.join();
             return clientCredentials.getAccessToken();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(IsraelTime.get() + " ");e.printStackTrace();
         }
         return null;
     }

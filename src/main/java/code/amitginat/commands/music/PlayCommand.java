@@ -5,6 +5,7 @@ import code.amitginat.events.ReadEvent;
 import code.amitginat.music.lavaplayer.PlayerManager;
 import code.amitginat.music.spotify.InitiateSpotifyPlaylistRequest;
 import code.amitginat.music.spotify.InitiateSpotifyTrack;
+import code.amitginat.other.IsraelTime;
 
 import java.net.URI;
 import java.net.URL;
@@ -26,7 +27,7 @@ public class PlayCommand extends AbstractCommand {
         }
         catch (Throwable throwable){
             channel.sendMessage("לא מצליח לנגן.").queue();
-            throwable.printStackTrace();
+            System.out.println(IsraelTime.get() + " ");throwable.printStackTrace();
         }
 
     }

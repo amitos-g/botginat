@@ -2,6 +2,7 @@ package code.amitginat.events;
 
 import code.amitginat.Bot;
 import code.amitginat.commands.AbstractCommand;
+import code.amitginat.other.IsraelTime;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -23,13 +24,16 @@ public class ReadEvent extends ListenerAdapter {
                 for (AbstractCommand command : Bot.commandManager.getCommands()) {
                     if(command.prefix().equals(prefix)){
                         command.run();
+                        return;
                     }
                 }
+                event.getChannel().sendMessage("מתרוצה").queue();
 
             }
         }
         catch(Throwable t){
             event.getChannel().sendMessage("בעיה..").queue();
+            System.out.println(IsraelTime.get() + " " + t);
         }
 
 
@@ -50,8 +54,6 @@ public class ReadEvent extends ListenerAdapter {
 //                if (event.getMessage().getMember().getUser().isBot()) {
 //                    return;
 //                }
-//                //TODO: IMPLEMENT CHATGPT
-//                //TODO: IMPLEMENT SPOTIFY
 //                if (message.contains("ginat help")) {
 //                    String toSend = """
 //

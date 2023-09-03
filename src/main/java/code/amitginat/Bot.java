@@ -1,8 +1,11 @@
 package code.amitginat;
 
 import code.amitginat.commands.CommandManager;
+import code.amitginat.commands.func.ClearMessageCommand;
+import code.amitginat.commands.func.HelpCommand;
 import code.amitginat.commands.music.*;
 import code.amitginat.events.ReadEvent;
+import code.amitginat.other.IsraelTime;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
@@ -34,7 +37,7 @@ public class Bot {
         //COMMANDS
         commandManager = new CommandManager(
                 new HelpCommand(),
-
+                new ClearMessageCommand(),
                 new JoinCommand(),
                 new LeaveCommand(),
                 new PlayCommand(),
@@ -43,11 +46,9 @@ public class Bot {
                 new SkipCommand(),
                 new NowPlayingCommand(),
                 new WhatsNextCommand(),
-                new ClearMusicCommand(),
+                new ClearMusicCommand()
 
-                new ClearMessageCommand()
         );
-
 
 
         //CACHE
@@ -64,7 +65,7 @@ public class Bot {
         }
         catch (Throwable throwable){
             bot = createBot().build();
-            throwable.printStackTrace();
+            System.out.println(IsraelTime.get() + " ");throwable.printStackTrace();
 
         }
     }

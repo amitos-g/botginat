@@ -1,6 +1,7 @@
 package code.amitginat.commands.music;
 
 import code.amitginat.commands.AbstractCommand;
+import code.amitginat.other.IsraelTime;
 import net.dv8tion.jda.api.entities.channel.unions.AudioChannelUnion;
 
 public class JoinCommand extends AbstractCommand {
@@ -30,7 +31,7 @@ public class JoinCommand extends AbstractCommand {
         }
         catch (Throwable throwable){
             channel.sendMessage("וואי סליחה רצח אבל לא מצליח להיכנס...").queue();
-            throwable.printStackTrace();
+            System.out.println(IsraelTime.get() + " ");throwable.printStackTrace();
         }
 
     }

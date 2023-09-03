@@ -1,6 +1,7 @@
 package code.amitginat.music.spotify;
 
 import code.amitginat.ApiKeys;
+import code.amitginat.other.IsraelTime;
 import org.apache.hc.core5.http.ParseException;
 import se.michaelthelin.spotify.SpotifyApi;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
@@ -71,7 +72,7 @@ public class InitiateSpotifyPlaylistRequest {
 
 
         } catch (IOException | SpotifyWebApiException | ParseException e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println(IsraelTime.get() + " Error: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -85,9 +86,9 @@ public class InitiateSpotifyPlaylistRequest {
             final Paging<PlaylistTrack> playlistTrackPaging = pagingFuture.join();
 
         } catch (CompletionException e) {
-            System.out.println("Error: " + e.getCause().getMessage());
+            System.out.println(IsraelTime.get() + " Error: " + e.getCause().getMessage());
         } catch (CancellationException e) {
-            System.out.println("Async operation cancelled.");
+            System.out.println(IsraelTime.get() + " Async operation cancelled.");
         }
     }
 
@@ -102,7 +103,7 @@ public class InitiateSpotifyPlaylistRequest {
             final ClientCredentials clientCredentials = clientCredentialsFuture.join();
             return clientCredentials.getAccessToken();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(IsraelTime.get() + " ");e.printStackTrace();
         }
         return null;
     }

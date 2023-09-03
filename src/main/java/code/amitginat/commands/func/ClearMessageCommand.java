@@ -1,4 +1,4 @@
-package code.amitginat.commands.music;
+package code.amitginat.commands.func;
 
 import code.amitginat.commands.AbstractCommand;
 
