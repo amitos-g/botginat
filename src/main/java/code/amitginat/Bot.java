@@ -1,8 +1,7 @@
 package code.amitginat;
 
 import code.amitginat.commands.CommandManager;
-import code.amitginat.commands.func.ClearMessageCommand;
-import code.amitginat.commands.func.HelpCommand;
+import code.amitginat.commands.func.*;
 import code.amitginat.commands.music.*;
 import code.amitginat.events.ReadEvent;
 import code.amitginat.other.IsraelTime;
@@ -36,6 +35,9 @@ public class Bot {
 
         //COMMANDS
         commandManager = new CommandManager(
+                new TimeCommand(),
+                new TimeUntilCommand(),
+                new DaysUntilCommand(),
                 new HelpCommand(),
                 new ClearMessageCommand(),
                 new JoinCommand(),
@@ -47,7 +49,6 @@ public class Bot {
                 new NowPlayingCommand(),
                 new WhatsNextCommand(),
                 new ClearMusicCommand()
-
         );
 
 

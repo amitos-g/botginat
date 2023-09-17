@@ -34,6 +34,7 @@ public class ReadEvent extends ListenerAdapter {
         catch(Throwable t){
             event.getChannel().sendMessage("בעיה..").queue();
             System.out.println(IsraelTime.get() + " " + t);
+            t.printStackTrace();
         }
 
 
