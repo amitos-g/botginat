@@ -20,9 +20,11 @@ public abstract class AbstractCommand {
     protected GuildVoiceState memberVoiceState;
     protected GuildVoiceState selfVoiceState;
     protected AudioManager audioManager;
+    protected MessageReceivedEvent event;
     protected GuildMusicManager musicManager;
     protected Message messageFull;
     public void setEvent(MessageReceivedEvent event){
+        this.event = event;
         channel = event.getChannel();
         guild = event.getGuild();
         messageFull = event.getMessage();

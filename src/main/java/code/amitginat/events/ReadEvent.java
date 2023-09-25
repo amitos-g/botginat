@@ -3,9 +3,11 @@ package code.amitginat.events;
 import code.amitginat.Bot;
 import code.amitginat.commands.AbstractCommand;
 import code.amitginat.other.IsraelTime;
-import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 public class ReadEvent extends ListenerAdapter {
 
@@ -13,12 +15,16 @@ public class ReadEvent extends ListenerAdapter {
     public static MessageReceivedEvent thisEvent;
 
     @Override
-    public void onMessageReceived(MessageReceivedEvent event) {
+    public void onMessageReceived(@NotNull MessageReceivedEvent event) {
         try {
             thisEvent = event;
-            if(event.getMember().getUser().isBot()){return;}
+            if(Objects.requireNonNull(event.getMember()).getUser().isBot()){return;}
             String message = event.getMessage().getContentRaw();
             if (message.contains("ginat")) {
+                if (message.strip().equals("ginat") || !message.contains(" ")) {
+                    event.getChannel().sendMessage("מתרוצה").queue();
+                    return;
+                }
                 String prefix = message.split(" ")[1].toLowerCase().strip();
                 Bot.commandManager.setEvents(event);
                 for (AbstractCommand command : Bot.commandManager.getCommands()) {
@@ -346,11 +352,5 @@ public class ReadEvent extends ListenerAdapter {
 //        } catch (Throwable e){return false;}
 //
 //    }
-    }
-
-    public void displayPlaying(AudioTrack track)
-    {
-        thisEvent.getChannel().sendMessageFormat("Playing %s by %s", track.getInfo().title, track.getInfo().author);
-
     }
 }

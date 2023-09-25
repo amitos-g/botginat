@@ -11,8 +11,6 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
-import javax.security.auth.login.LoginException;
-
 public class Bot {
 
 
@@ -35,6 +33,7 @@ public class Bot {
 
         //COMMANDS
         commandManager = new CommandManager(
+
                 new TimeCommand(),
                 new TimeUntilCommand(),
                 new DaysUntilCommand(),
@@ -60,7 +59,7 @@ public class Bot {
     }
 
 
-    public static void main(String[] args) throws LoginException {
+    public static void main(String[] args) {
         try{
             bot = createBot().build();
         }
