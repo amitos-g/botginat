@@ -27,7 +27,7 @@ public class ClearMusicCommand extends AbstractCommand {
         }
     @Override
     public String prefix() {
-        return "clearmusic";
+        return "clear-music";
     }
 
     @Override

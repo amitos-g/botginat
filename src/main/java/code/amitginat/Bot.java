@@ -3,6 +3,9 @@ package code.amitginat;
 import code.amitginat.commands.CommandManager;
 import code.amitginat.commands.func.*;
 import code.amitginat.commands.music.*;
+import code.amitginat.commands.other.ChuckNorrisCommand;
+import code.amitginat.commands.other.JokeCommand;
+import code.amitginat.commands.other.RiddleCommand;
 import code.amitginat.events.ReadEvent;
 import code.amitginat.other.IsraelTime;
 import net.dv8tion.jda.api.JDA;
@@ -34,6 +37,9 @@ public class Bot {
         //COMMANDS
         commandManager = new CommandManager(
 
+                new RiddleCommand(),
+                new JokeCommand(),
+                new ChuckNorrisCommand(),
                 new TimeCommand(),
                 new TimeUntilCommand(),
                 new DaysUntilCommand(),

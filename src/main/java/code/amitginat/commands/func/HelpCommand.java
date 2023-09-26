@@ -32,6 +32,17 @@ public class HelpCommand extends AbstractCommand {
                         thisHelp));
             }
         }
+        builder.append("%n".formatted());
+        builder.append("**Irrelevant:**");
+        for (var command : allCommands) {
+            if (command.getType().equals("other")) {
+                String thisPrefix = command.prefix();
+                String thisHelp = command.explain();
+                builder.append(String.format("%n*ginat %s - %s*",
+                        thisPrefix,
+                        thisHelp));
+            }
+        }
         builder.append(String.format("%n"));
         builder.append("------------------------------------------------------");
         channel.sendMessage(builder).queue();
