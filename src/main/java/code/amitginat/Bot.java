@@ -37,6 +37,7 @@ public class Bot {
         //COMMANDS
         commandManager = new CommandManager(
 
+                new YnetCommand(),
                 new RiddleCommand(),
                 new JokeCommand(),
                 new ChuckNorrisCommand(),
