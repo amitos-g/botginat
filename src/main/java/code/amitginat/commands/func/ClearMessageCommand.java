@@ -19,10 +19,19 @@ public class ClearMessageCommand extends AbstractCommand {
             channel.sendMessage("יכול לנקות רק בין אחד למאה הודעות").queue();
             return;
         }
-        var messageList = channel.getHistory().retrievePast(amountInt + 1).complete();
-        channel.asTextChannel().deleteMessages(messageList).queue();
-        channel.sendMessageFormat("Cleared %s Messages", amountInt).queue();
+        try {
+            channel.sendMessageFormat("מנקה %s הודעות", amountInt).queue();
+            Thread.sleep(200);
+            var messageList = channel.getHistory().retrievePast(amountInt + 2).complete();
+            channel.asTextChannel().deleteMessages(messageList).queue();
 
+        }
+        catch (IllegalArgumentException e){
+            channel.sendMessage("לא יכול לנקות הודעות מלפני יותר משבועיים").queue();
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
     @Override
     public String name() {

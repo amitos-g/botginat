@@ -4,10 +4,10 @@
 <h3> Introduction </h3>
 
 <p>
-Bot Ginat is a versatile Discord bot written in Java. <br>
-It has a wide range of features, including music playback, news updates, and fun commands.
+Bot Ginat is a Discord bot written in Java. <br>
+The bot includes music, news, useful commands and more.
 
-It uses the following libraries:
+It uses:
 
 * JDA: https://github.com/DV8FromTheWorld/JDA for integration with Discord's API <br>
 * Lavaplayer: https://github.com/sedmelluq/lavaplayer for playing music
@@ -20,33 +20,25 @@ It uses the following libraries:
 <p>
 Bot Ginat can play music from both YouTube and Spotify. <br>
 It can also play playlists from both platforms! <br>
-To play a song, simply type `ginat play [song name or link]`. the bot will recognize it's type.
+To play a song, simply type `ginat play [song name or link / playlist link]`. the bot will recognize it's type.
 </p>
 
-<h3> Bot Ginat also has a number of other music-related features, such as: </h3>
-
-* **`ginat stop`:** Stops the current song
-* **`ginat resume`:** Resumes the current song
-* **`ginat skip`:** Skips the current song
-* **`ginat now-playing`:** Shows the song that is currently playing
-* **`ginat whats-next`:** Shows the songs in the queue
-* **`ginat clear-music`:** Clears the songs in the queue
-
-
-<h3>Other Features</h3>
-
-In addition to its music features, Bot Ginat also has a number of other features, such as:
+<h3>Features</h3>
+* **Help:** Bot Ginat can display a list of all of its commands and how to use them.
 
 * **News updates:** Bot Ginat can send news updates from Ynet every minute. To enable this feature, simply type `ginat ynet`. To disable it, type `ginat ynet` again.
+
+* **Clearing Messages:** Bot ginat can clear messages in the channel you want.
+
 * **Time and date:** Bot Ginat can tell you the current time and date, as well as the time until a specified time or date.
-* **Help:** Bot Ginat can display a list of all of its commands and how to use them.
+    
 * **Fun commands:** Bot Ginat has a number of fun commands, such as riddles, dad jokes, and Chuck Norris jokes.
 
 <h3>Installation</h3>
 
 To install Bot Ginat, first make sure you have:
 * A JDA Token
-* A Spotify Client & Secret ID 
+* A Spotify Client & Secret ID
 * An Api Ninjas Key
 
 Then, follow these steps:
@@ -57,31 +49,33 @@ Then, follow these steps:
 git clone https://github.com/amitos-g/botginat
 ```
 
-2. Install the dependencies:
+2. Install the dependencies with maven:
 
 ```
-mvn install
+lavaplayer, JDA, jsoup, spotify-web-api-java, json.
 ```
 
-3. Create an ApiKeys file in the project directory and add the following values:
+3. Create an ApiKeys.java file inside the code.amitginat package and add the following lines:
 
 ```
-SPOTIFY_CLIENT_ID=[your-client-id]
-SPOTIFY_CLIENT_SECRET=[your-client-secret]
-JDA_TOKEN=[your-bot-token]
-API_NINJAS_KEY=[your-api-ninjas-key]
+public static final String SPOTIFY_CLIENT_ID=[your-client-id];
+public static final String SPOTIFY_CLIENT_SECRET=[your-client-secret];
+public static final String JDA_TOKEN=[your-bot-token];
+public static final String API_NINJAS_KEY=[your-api-ninjas-key];
 ```
 
-4. Run the bot:
-
-```
-mvn exec:java
-```
+4. Run the bot.
 
 
 <h3>Examples</h3>
 
 Here are some examples of how to use Bot Ginat:
+
+**Showing the help menu:**
+
+```
+ginat help
+```
 
 **Playing a song from YouTube:**
 
@@ -94,20 +88,7 @@ ginat play https://www.youtube.com/watch?v=dQw4w9WgXcQ
 ```
 ginat play https://open.spotify.com/track/4cOdK2wGLETKBW3PvgPWqT?si=5eee516f20344855
 ```
-
-**Playing a playlist from YouTube:**
-
-```
-ginat play [youtube playlist link]
-```
-
-**Playing a playlist from Spotify:**
-
-```
-ginat play [spotify playlist link]
-```
-
-**Activating Ynet news updates:**
+**Activating/Stopping Ynet news updates:**
 
 ```
 ginat ynet
@@ -117,12 +98,6 @@ ginat ynet
 
 ```
 ginat time
-```
-
-**Showing the help menu:**
-
-```
-ginat help
 ```
 
 **Getting the time until a specified date:**
