@@ -5,7 +5,7 @@
 
 <p>
 Bot Ginat is a Discord bot written in Java. <br>
-The bot includes music, news, useful commands and more.
+The bot includes music, news, useful commands and more. (see usage dir for short examples)
 
 It uses:
 
@@ -24,14 +24,18 @@ To play a song, simply type `ginat play [song name or link / playlist link]`. th
 </p>
 
 <h3>Features</h3>
-* **Help:** Bot Ginat can display a list of all of its commands and how to use them.
+Help: Bot Ginat can display a list of all of its commands and how to use them.
+<img src="https://github.com/amitos-g/botginat/blob/master/usage/help.gif" width="500" height="300" />
 
-* **News updates:** Bot Ginat can send news updates from Ynet every minute. To enable this feature, simply type `ginat ynet`. To disable it, type `ginat ynet` again.
+News updates: Bot Ginat can send news updates from Ynet every minute. To enable this feature, simply type `ginat ynet`. To disable it, type `ginat ynet` again.
+<img src="https://github.com/amitos-g/botginat/blob/master/usage/ynet.gif" width="500" height="300" />
 
-* **Clearing Messages:** Bot ginat can clear messages in the channel you want.
+Clearing Messages: Bot ginat can clear messages in the channel you want.
+<img src="https://github.com/amitos-g/botginat/blob/master/usage/clearmsg.gif" width="500" height="300" />
 
-* **Time and date:** Bot Ginat can tell you the current time and date, as well as the time until a specified time or date.
-    
+Time and date: Bot Ginat can tell you the current time and date, as well as the time until a specified time or date.
+<img src="https://github.com/amitos-g/botginat/blob/master/usage/time.gif" width="500" height="300" />
+
 * **Fun commands:** Bot Ginat has a number of fun commands, such as riddles, dad jokes, and Chuck Norris jokes.
 
 <h3>Installation</h3>
