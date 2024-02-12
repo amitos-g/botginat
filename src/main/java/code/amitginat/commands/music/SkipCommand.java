@@ -32,7 +32,7 @@ public class SkipCommand extends AbstractCommand {
         return "music";
     }
     @Override
-    public String prefix() {
+    public String name() {
         return "skip";
     }
 

@@ -16,11 +16,19 @@ import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
 public class Bot {
 
+    /*
+        Main class for the Bot. this class is the one that gathers everything into one.
+     */
 
-    public static CommandManager commandManager;
-    private static JDA bot;
+    private static CommandManager commandManager; // static command manager. will be used by the read-event and the help-command
+    private static JDA bot; // the bot itself
     public static JDABuilder createBot(){
-
+        /*
+            This function will:
+                * build the bot (enable the right intents, set the activity and the read event listener)
+                * create the command manager and add the commands to it which will be used by the read event
+                *  enable the voice state cache flag and return it to main.
+         */
         JDABuilder bot = JDABuilder.createDefault(ApiKeys.JDA_TOKEN);
         //INTENTS
         bot.enableIntents(
@@ -29,10 +37,8 @@ public class Bot {
                 GatewayIntent.GUILD_MESSAGES,
                 GatewayIntent.GUILD_VOICE_STATES
         );
-
         //ACTIVITY
         bot.setActivity(Activity.listening("ginat help"));
-
 
         //COMMANDS
         commandManager = new CommandManager(
@@ -56,27 +62,24 @@ public class Bot {
                 new WhatsNextCommand(),
                 new ClearMusicCommand()
         );
-
-
-        //CACHE
-
         bot.enableCache(CacheFlag.VOICE_STATE);
         bot.addEventListeners(new ReadEvent());
         return bot;
     }
-
-
+    public static JDA getBot(){
+        return bot;
+    }
+    public static CommandManager getCommandManager(){
+        return commandManager;
+    }
     public static void main(String[] args) {
         try{
-            bot = createBot().build();
+            bot = createBot().build(); // create the bot, build it. this will activate the bot and make it listen to the read event.
         }
         catch (Throwable throwable){
-            bot = createBot().build();
             System.out.println(IsraelTime.get() + " ");throwable.printStackTrace();
 
         }
     }
-    public static JDA getBot(){
-        return bot;
-    }
+
 }

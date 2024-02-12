@@ -34,7 +34,7 @@ public class ResumeCommand extends AbstractCommand {
         return "music";
     }
     @Override
-    public String prefix() {
+    public String name() {
         return "resume";
     }
 

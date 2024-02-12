@@ -27,7 +27,7 @@ public class ChuckNorrisCommand extends AbstractCommand {
         return "other";
     }
     @Override
-    public String prefix() {
+    public String name() {
         return "chuck-norris";
     }
 
@@ -64,10 +64,10 @@ public class ChuckNorrisCommand extends AbstractCommand {
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         StringBuilder sb = new StringBuilder();
 
-        String line = null;
+        String line;
         try {
             while ((line = reader.readLine()) != null) {
-                sb.append(line + "\n");
+                sb.append(line).append("\n");
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -26,7 +26,7 @@ public class NowPlayingCommand extends AbstractCommand {
     }
 
     @Override
-    public String prefix() {
+    public String name() {
         return "now-playing";
     }
 

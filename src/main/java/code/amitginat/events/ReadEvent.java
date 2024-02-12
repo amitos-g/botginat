@@ -2,49 +2,58 @@ package code.amitginat.events;
 
 import code.amitginat.Bot;
 import code.amitginat.commands.AbstractCommand;
+import code.amitginat.commands.CommandManager;
 import code.amitginat.other.IsraelTime;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.Objects;
 
 public class ReadEvent extends ListenerAdapter {
-
-    public static boolean ISPLAYLIST;
+    /*
+        the main (and currently only) event listener for the bot.
+        this class represents the event that will occur when the bot is reading a message.
+     */
     public static MessageReceivedEvent thisEvent;
 
     @Override
-    public void onMessageReceived(@NotNull MessageReceivedEvent event) {
+    public void onMessageReceived(MessageReceivedEvent event) {
+        /*
+            will be triggered on every message the bot is reading.
+         */
+
+
+        CommandManager commandManager = Bot.getCommandManager();
+
         try {
             thisEvent = event;
-            if(Objects.requireNonNull(event.getMember()).getUser().isBot()){return;}
+            if(isUserABot(event))
+            {
+                return; // the message sender is a bot
+            }
             String message = event.getMessage().getContentRaw();
             if (message.contains("ginat")) {
-                if (message.strip().equals("ginat") || !message.contains(" ")) {
+                if (!isACommand(message)) {
                     event.getChannel().sendMessage("מתרוצה").queue();
                     return;
                 }
-                String prefix = message.split(" ")[1].toLowerCase().strip();
-                Bot.commandManager.setEvents(event);
-                for (AbstractCommand command : Bot.commandManager.getCommands()) {
-                    if(command.prefix().equals(prefix)){
-                        command.run();
-                        return;
-                    }
+                String commandName = message.split(" ")[1].toLowerCase().strip();
+                commandManager.setEvents(event);
+                AbstractCommand command = commandManager.getCommand(commandName);
+                if(command == null){
+                    // there is not such command
+                    event.getChannel().sendMessage("מתרוצה").queue();
+                    return;
                 }
-                event.getChannel().sendMessage("מתרוצה").queue();
-
+                command.run();
             }
         }
         catch(Throwable t){
-            event.getChannel().sendMessage("בעיה..").queue();
+            event.getChannel().sendMessage("בעיה..").queue(); // error
             System.out.println(IsraelTime.get() + " " + t);
             t.printStackTrace();
         }
 
 
-//
+//          IMPLEMENTATION WITHOUT CLASSES
 //        if(event.isFromGuild()){
 //            try {
 //                MessageChannelUnion channel = event.getChannel();
@@ -352,5 +361,19 @@ public class ReadEvent extends ListenerAdapter {
 //        } catch (Throwable e){return false;}
 //
 //    }
+    }
+
+
+
+    public boolean isACommand(String message)
+    {
+        if (message.strip().equals("ginat") || !message.contains(" ")) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isUserABot(MessageReceivedEvent event){
+        return event.getMember().getUser().isBot();
     }
 }

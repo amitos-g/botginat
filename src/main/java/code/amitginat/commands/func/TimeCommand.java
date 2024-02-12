@@ -1,6 +1,4 @@
 package code.amitginat.commands.func;
-
-import code.amitginat.Bot;
 import code.amitginat.commands.AbstractCommand;
 import code.amitginat.other.IsraelTime;
 
@@ -14,7 +12,7 @@ public class TimeCommand extends AbstractCommand {
         return "func";
     }
     @Override
-    public String prefix() {
+    public String name() {
         return "time";
     }
 

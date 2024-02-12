@@ -33,7 +33,7 @@ public class StopCommand extends AbstractCommand {
         channel.sendMessage("עצרתי").queue();
         }
     @Override
-    public String prefix() {
+    public String name() {
         return "stop";
     }
 

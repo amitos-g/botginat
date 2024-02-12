@@ -37,7 +37,7 @@ public class JoinCommand extends AbstractCommand {
     }
 
     @Override
-    public String prefix() {
+    public String name() {
         return "join";
     }
 

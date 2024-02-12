@@ -21,7 +21,7 @@ public class YnetCommand extends AbstractCommand {
         return "func";
     }
     @Override
-    public String prefix() {
+    public String name() {
         return "ynet";
     }
 

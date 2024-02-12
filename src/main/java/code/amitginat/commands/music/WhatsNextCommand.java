@@ -37,7 +37,7 @@ public class WhatsNextCommand extends AbstractCommand {
     }
 
     @Override
-    public String prefix() {
+    public String name() {
         return "whats-next";
     }
 

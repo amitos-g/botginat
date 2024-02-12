@@ -16,34 +16,30 @@ public class YnetUtil{
 
     public static void activate(){
         isActive = true;
-        Thread thread = new Thread(){
-            @Override
-            public void run()
-            {
-                try{
-                    var before = Instant.now();
-                    String lastTitle = "";
-                    while(isActive){
-                        var current = Instant.now();
-                        if(Duration.between(before, current).toMinutes() == 1){
-                            before = current;
-                            var doc = Jsoup.connect("https://www.ynet.co.il/news/category/184").get();
-                            var accordion = doc.getElementsByClass("Accordion").get(0);
-                            var title = accordion.getElementsByClass("titleRow").get(0).getElementsByClass("title").get(0).text();
-                            if(!title.equals(lastTitle)){
-                                channel.sendMessage(title).queue();
-                                lastTitle = title;
+        Thread thread = new Thread(() -> {
+            try{
+                var before = Instant.now();
+                String lastTitle = "";
+                while(isActive){
+                    var current = Instant.now();
+                    if(Duration.between(before, current).toMinutes() == 1){
+                        before = current;
+                        var doc = Jsoup.connect("https://www.ynet.co.il/news/category/184").get();
+                        var accordion = doc.getElementsByClass("Accordion").get(0);
+                        var title = accordion.getElementsByClass("titleRow").get(0).getElementsByClass("title").get(0).text();
+                        if(!title.equals(lastTitle)){
+                            channel.sendMessage(title).queue();
+                            lastTitle = title;
 
-                            }
                         }
                     }
                 }
-                catch (Throwable t){
-                    channel.sendMessage("Error!").queue();
-                    t.printStackTrace();
-                }
             }
-        };
+            catch (Throwable t){
+                channel.sendMessage("Error!").queue();
+                t.printStackTrace();
+            }
+        });
         runningThread = thread;
         thread.start();
 

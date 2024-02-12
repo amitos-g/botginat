@@ -3,6 +3,9 @@ package code.amitginat.commands.func;
 import code.amitginat.Bot;
 import code.amitginat.commands.AbstractCommand;
 
+import java.util.HashMap;
+import java.util.List;
+
 public class HelpCommand extends AbstractCommand {
     @Override
     public void run() {
@@ -10,38 +13,33 @@ public class HelpCommand extends AbstractCommand {
         builder.append("------------------------------------------------------");
         builder.append(String.format("%n"));
 
-        var allCommands = Bot.commandManager.getCommands();
+        HashMap<String, List<AbstractCommand>> helpMap = Bot.getCommandManager().getHelpMap();
+
         builder.append("**Music:**");
-        for (var command : allCommands) {
-            if (command.getType().equals("music")) {
-                String thisPrefix = command.prefix();
-                String thisHelp = command.explain();
-                builder.append(String.format("%n*ginat %s - %s*",
-                        thisPrefix,
-                        thisHelp));
-            }
+        for(AbstractCommand command : helpMap.get("music")){
+            String thisName = command.name();
+            String thisHelp = command.explain();
+            builder.append(String.format("%n*ginat %s - %s*",
+                    thisName,
+                    thisHelp));
         }
         builder.append(String.format("%n"));
         builder.append("**Func:**");
-        for (var command : allCommands) {
-            if (command.getType().equals("func")) {
-                String thisPrefix = command.prefix();
-                String thisHelp = command.explain();
-                builder.append(String.format("%n*ginat %s - %s*",
-                        thisPrefix,
-                        thisHelp));
-            }
+        for(AbstractCommand command : helpMap.get("func")){
+            String thisPrefix = command.name();
+            String thisHelp = command.explain();
+            builder.append(String.format("%n*ginat %s - %s*",
+                    thisPrefix,
+                    thisHelp));
         }
         builder.append("%n".formatted());
         builder.append("**Irrelevant:**");
-        for (var command : allCommands) {
-            if (command.getType().equals("other")) {
-                String thisPrefix = command.prefix();
-                String thisHelp = command.explain();
-                builder.append(String.format("%n*ginat %s - %s*",
-                        thisPrefix,
-                        thisHelp));
-            }
+        for(AbstractCommand command : helpMap.get("other")){
+            String thisPrefix = command.name();
+            String thisHelp = command.explain();
+            builder.append(String.format("%n*ginat %s - %s*",
+                    thisPrefix,
+                    thisHelp));
         }
         builder.append(String.format("%n"));
         builder.append("------------------------------------------------------");
@@ -53,7 +51,7 @@ public class HelpCommand extends AbstractCommand {
         return "func";
     }
     @Override
-    public String prefix() {
+    public String name() {
         return "help";
     }
 

@@ -26,7 +26,7 @@ public class ClearMusicCommand extends AbstractCommand {
         channel.sendMessage("תור השירים נוקה").queue();
         }
     @Override
-    public String prefix() {
+    public String name() {
         return "clear-music";
     }
 

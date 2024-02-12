@@ -49,7 +49,7 @@ public class TimeUntilCommand extends AbstractCommand {
         return "func";
     }
     @Override
-    public String prefix() {
+    public String name() {
         return "time-until";
     }
 

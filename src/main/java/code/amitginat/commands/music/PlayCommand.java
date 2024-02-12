@@ -1,7 +1,6 @@
 package code.amitginat.commands.music;
 
 import code.amitginat.commands.AbstractCommand;
-import code.amitginat.events.ReadEvent;
 import code.amitginat.music.lavaplayer.PlayerManager;
 import code.amitginat.music.spotify.InitiateSpotifyPlaylistRequest;
 import code.amitginat.music.spotify.InitiateSpotifyTrack;
@@ -32,7 +31,7 @@ public class PlayCommand extends AbstractCommand {
 
     }
     @Override
-    public String prefix() {
+    public String name() {
         return "play";
     }
 
@@ -50,7 +49,7 @@ public class PlayCommand extends AbstractCommand {
 
     public void playYoutube()
     {
-        ReadEvent.ISPLAYLIST = false;
+        PlayerManager.isPlaylist = false;
         if (!memberVoiceState.inAudioChannel()) {
             channel.sendMessage("אתה לא בשיחה").queue();
             return;
@@ -83,7 +82,7 @@ public class PlayCommand extends AbstractCommand {
             return;
         }
         if (toPlay.contains("playlist")) {
-            ReadEvent.ISPLAYLIST = true;
+            PlayerManager.isPlaylist = true;
             String id = toPlay.replace("https://open.spotify.com/playlist/", "").strip();
             if (id.contains("?") || id.contains("=")) {
                 id = id.substring(0, id.indexOf('?'));
@@ -96,10 +95,10 @@ public class PlayCommand extends AbstractCommand {
                 var songs = spotify.getSongs();
 
                 for (var song : songs) {
-                    ReadEvent.ISPLAYLIST = true;
+                    PlayerManager.isPlaylist = true;
                     PlayerManager.getInstance().loadAndPlay(channel, "ytsearch:" + song);
                 }
-                ReadEvent.ISPLAYLIST = false;
+                PlayerManager.isPlaylist = false;
                 channel.sendMessage("הועלה!").queue();
 
 

@@ -1,14 +1,9 @@
 package code.amitginat.commands.func;
 
 import code.amitginat.commands.AbstractCommand;
-import code.amitginat.other.IsraelTime;
-
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class DaysUntilCommand extends AbstractCommand {
@@ -23,9 +18,7 @@ public class DaysUntilCommand extends AbstractCommand {
         }
         ArrayList<String> dateUnits = new ArrayList<>(List.of(message.replace("ginat days-until", "").strip().split(":")));
         ArrayList<Integer> dateUnitsInt = new ArrayList<>();
-        dateUnits.forEach(s -> {
-            dateUnitsInt.add(dateUnits.indexOf(s), Integer.parseInt(s));
-        });
+        dateUnits.forEach(s -> dateUnitsInt.add(dateUnits.indexOf(s), Integer.parseInt(s)));
         //dateUnitsInt[0] == days, //dateUnitsInt[1] == months, //dateUnitsInt[2] == year
         //VALIDATE
         if(dateUnitsInt.get(0) > 31 || dateUnitsInt.get(0) < 1 || dateUnitsInt.get(1) < 1 || dateUnitsInt.get(1)  > 12){
@@ -57,7 +50,7 @@ public class DaysUntilCommand extends AbstractCommand {
         return "func";
     }
     @Override
-    public String prefix() {
+    public String name() {
         return "days-until";
     }
 

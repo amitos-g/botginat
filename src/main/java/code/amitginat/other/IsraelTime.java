@@ -14,9 +14,7 @@ public class IsraelTime {
         ZonedDateTime time = ZonedDateTime.ofInstant(Instant.now(), ZoneId.of("Israel"));
         return String.format("%s:%s:%s", time.getHour(), time.getMinute(), time.getSecond());
     }
-    public static ZonedDateTime getObject(){
-        return ZonedDateTime.ofInstant(Instant.now(), ZoneId.of("Israel"));
-    }
+
     public static LocalTime getLocal(){
         return LocalTime.now(ZoneId.of("Israel"));
     }

@@ -27,7 +27,7 @@ public class LeaveCommand extends AbstractCommand {
     }
 
     @Override
-    public String prefix() {
+    public String name() {
         return "leave";
     }
 

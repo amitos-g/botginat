@@ -25,7 +25,7 @@ public class ClearMessageCommand extends AbstractCommand {
 
     }
     @Override
-    public String prefix() {
+    public String name() {
         return "clearmsg";
     }
 
