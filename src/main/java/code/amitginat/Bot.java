@@ -3,9 +3,7 @@ package code.amitginat;
 import code.amitginat.commands.CommandManager;
 import code.amitginat.commands.func.*;
 import code.amitginat.commands.music.*;
-import code.amitginat.commands.other.ChuckNorrisCommand;
-import code.amitginat.commands.other.JokeCommand;
-import code.amitginat.commands.other.RiddleCommand;
+import code.amitginat.commands.other.*;
 import code.amitginat.events.ReadEvent;
 import code.amitginat.other.IsraelTime;
 import net.dv8tion.jda.api.JDA;
@@ -60,7 +58,9 @@ public class Bot {
                 new SkipCommand(),
                 new NowPlayingCommand(),
                 new WhatsNextCommand(),
-                new ClearMusicCommand()
+                new ClearMusicCommand(),
+                new WhoisCommand(),
+                new FactCommand()
         );
         bot.enableCache(CacheFlag.VOICE_STATE);
         bot.addEventListeners(new ReadEvent());
