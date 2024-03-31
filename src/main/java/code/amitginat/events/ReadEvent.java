@@ -4,6 +4,7 @@ import code.amitginat.Bot;
 import code.amitginat.commands.AbstractCommand;
 import code.amitginat.commands.CommandManager;
 import code.amitginat.other.IsraelTime;
+import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
@@ -19,7 +20,6 @@ public class ReadEvent extends ListenerAdapter {
         /*
             will be triggered on every message the bot is reading.
          */
-
 
         CommandManager commandManager = Bot.getCommandManager();
 

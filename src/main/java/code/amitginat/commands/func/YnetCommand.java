@@ -6,15 +6,7 @@ import code.amitginat.other.YnetUtil;
 public class YnetCommand extends AbstractCommand {
     @Override
     public void run() {
-        if (YnetUtil.isActive){
-            YnetUtil.stop();
-            channel.sendMessage("Stopped!").queue();
-        }
-        else{
-            YnetUtil.channel = channel;
-            YnetUtil.activate();
-            channel.sendMessage("Activated!").queue();
-        }
+        YnetUtil.execute(channel);
     }
     @Override
     public String getType() {
@@ -27,6 +19,6 @@ public class YnetCommand extends AbstractCommand {
 
     @Override
     public String explain() {
-        return "שולח עדכונים מווינט כל דקה. כבה בשלחית הפקודה שוב";
+        return "שולח עדכונים מווינט כל דקה. כבה בשליחת הפקודה שוב";
     }
 }
