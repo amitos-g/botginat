@@ -3,6 +3,7 @@ package code.amitginat.events;
 import code.amitginat.Bot;
 import code.amitginat.commands.AbstractCommand;
 import code.amitginat.commands.CommandManager;
+import code.amitginat.commands.games.TicTacToeCommand;
 import code.amitginat.other.IsraelTime;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -21,6 +22,9 @@ public class ReadEvent extends ListenerAdapter {
             will be triggered on every message the bot is reading.
          */
 
+        if(isTicTacToe(event)){
+            return;
+        }
         CommandManager commandManager = Bot.getCommandManager();
 
         try {
@@ -363,6 +367,15 @@ public class ReadEvent extends ListenerAdapter {
 //    }
     }
 
+    private boolean isTicTacToe(MessageReceivedEvent event) {
+        Message message = event.getMessage();
+        Long id = message.getAuthor().getIdLong();
+        if(TicTacToeCommand.isPlaying(id)){
+            TicTacToeCommand.resume(event, id);
+            return true;
+        }
+        return false;
+    }
 
 
     public boolean isACommand(String message)

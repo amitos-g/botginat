@@ -1,7 +1,10 @@
 package code.amitginat;
 
 import code.amitginat.commands.CommandManager;
+import code.amitginat.commands.discord.CreateNewChannelCommand;
+import code.amitginat.commands.discord.DeleteChannelCommand;
 import code.amitginat.commands.func.*;
+import code.amitginat.commands.games.TicTacToeCommand;
 import code.amitginat.commands.music.*;
 import code.amitginat.commands.other.*;
 import code.amitginat.events.ReadEvent;
@@ -9,10 +12,8 @@ import code.amitginat.other.IsraelTime;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
-import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
-import net.dv8tion.jda.api.utils.messages.MessageCreateBuilder;
 
 public class Bot {
 
@@ -62,7 +63,10 @@ public class Bot {
                 new WhatsNextCommand(),
                 new ClearMusicCommand(),
                 new WhoisCommand(),
-                new FactCommand()
+                new FactCommand(),
+                new CreateNewChannelCommand(),
+                new DeleteChannelCommand(),
+                new TicTacToeCommand()
         );
         bot.enableCache(CacheFlag.VOICE_STATE);
         bot.addEventListeners(new ReadEvent());

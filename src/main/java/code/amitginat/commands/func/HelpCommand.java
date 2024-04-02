@@ -14,9 +14,35 @@ public class HelpCommand extends AbstractCommand {
     public void run() {
         String title = "Get Some Help.";
         helpMap = Bot.getCommandManager().getHelpMap();
+        GinatUtil.sendEmbed(channel, title, functions(), discord(), game(), musics(), others());
 
-        GinatUtil.sendEmbed(channel, title, functions(), musics(), others());
+    }
 
+    private MessageEmbed.Field game(){
+        String title = "**Games:**";
+        StringBuilder commands = new StringBuilder();
+        for(AbstractCommand command : helpMap.get("game")){
+            String thisPrefix = command.name();
+            String thisHelp = command.explain();
+            commands.append(String.format("%n*ginat %s - %s*",
+                    thisPrefix,
+                    thisHelp));
+        }
+        return new MessageEmbed.Field(title, commands.toString(), false);
+    }
+
+
+    private MessageEmbed.Field discord(){
+        String title = "**Discord:**";
+        StringBuilder commands = new StringBuilder();
+        for(AbstractCommand command : helpMap.get("discord")){
+            String thisPrefix = command.name();
+            String thisHelp = command.explain();
+            commands.append(String.format("%n*ginat %s - %s*",
+                    thisPrefix,
+                    thisHelp));
+        }
+        return new MessageEmbed.Field(title, commands.toString(), false);
     }
     private MessageEmbed.Field others(){
         String title = "**Irrelevant:**";
